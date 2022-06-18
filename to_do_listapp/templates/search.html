@@ -1,0 +1,12 @@
+<table>
+    <th>Task</th>
+    <tr>
+    {% if search %}
+    {% for search in searched %}
+    <td>{{search.title}}    <a href="">view</a>     <a href="">edit</a>     <a href="">delete</a></td>
+    {% endfor %}
+    {% else %}
+    <h4>Oops you forgot to search :(</h4>
+    {% endif %}
+    </tr>
+</table>

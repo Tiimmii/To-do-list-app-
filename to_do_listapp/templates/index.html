@@ -1,0 +1,37 @@
+{% if user.is_authenticated %}
+<a href="{% url 'login' %}">logout</a>
+<style>
+    h5{
+        color: red
+    }
+</style>
+<title>To do list</title>
+<h4>Welcome {{user.username}}</h4>
+<table>
+  
+    <th>Tasks</th>
+    <form method="Post" action="{% url 'search' %}">
+        {% for message in messages%}
+        <h5>{{message}}</h5>
+        {% endfor %}
+
+        {% csrf_token %}
+        <input type="search" name="search">
+        <input type="submit" value="search">
+    </form>
+    {% for task in task %}
+    <tr>
+        <td>{{task.title}}    <a href="/view/{{task.id}}">view</a>     <a href="/edit/{{task.id}}">edit</a>     <a href="/delete/{{task.id}}">delete</a></td>
+    </tr>
+    {% empty %}
+    <h3>No items in list :(</h3>
+    {% endfor %}
+</table>
+<p>
+    <a href="{% url 'create' %}"><button type="submit">create task</button></a>
+</p>
+{% else %}
+<p>
+    <h3>please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">signup</a></h3>
+</p>
+{% endif %}

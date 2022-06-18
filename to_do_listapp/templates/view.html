@@ -1,0 +1,10 @@
+<p><a href="/">Go back</a></p>
+
+<p><h4>{{view.title}}</h4><br></p>
+<p><h3>{{view.description}}</h3><br></p>
+<h2>created at:</h2> <p><h2>{{view.created_at}}</h2></p>
+<form method="Post" action="">
+    {% csrf_token %}
+    <div name="dcsubnet" class="dropdown" id="dropdownselection" required> {{form.complete}}</div>
+    <input type="submit" value="done">
+</form>
