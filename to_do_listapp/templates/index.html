@@ -8,14 +8,26 @@
     <link rel="stylesheet" href="{% static 'ok.css' %}">
     <title>To Do List App</title>
 </head>
+
 <body>
     <div class="container">
         <div class="box">
+            <div class="header">
+                <a><button>Logout</button></a>
+                <form method="post" action="{% url 'task:search' %}">
+                        {% csrf_token %}
+                        <input type="text"  placeholder="Search" name="search"/>
+                        <button>Search</button>
+                </form>
+            </div>
             <h1>Welcome {{user.username}}</h1>
             <h2>
                 Lets work on ure tasks &#128516;:
             </h2>
             <br>
+            {% for message in messages %}
+            {{messgae}}
+            {% endfor %}
             {% for task in task %}
                 <h3>
                     {{task.title}}
@@ -30,8 +42,19 @@
                             <button>Delete Task</button>
                         </a>
                     </div>
-                </h3> 
+                </h3>
+            {% empty %}
+            <h2>Hmmmmmmmm No Tasks..... Why not create a task? &#128513;</h2>
             {% endfor %}
+            <br>
+            <br>
+            <div class="btn">
+                <a href="{% url 'task:create' %}">
+                    <button>
+                        Create Task
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
 </body>

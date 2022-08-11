@@ -23,10 +23,11 @@ body{
 }
 .box{
     background-color: #f4f4f4;
-    margin-top: 30em;
+    margin-top: 20em;
     padding: 10px;
     border: 3px gray;
     border-radius: 15px;
+    text-transform: capitalize;
 
 }
 .box h1{
@@ -44,6 +45,7 @@ a :hover{
     background-color:aquamarine;
     color: black;
 }
+.btn-two
 
     
     
