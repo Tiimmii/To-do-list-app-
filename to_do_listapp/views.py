@@ -1,4 +1,3 @@
-from tkinter import NO
 from django.shortcuts import render, redirect
 from . models import Task
 from django.contrib.auth.models import User, auth
