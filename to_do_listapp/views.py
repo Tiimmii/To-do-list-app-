@@ -97,8 +97,8 @@ def search(request):
 
 def view(request, pk):
     
-    view = Task.objects.get(id=pk)
-    form = TaskViewForm(instance=view)
+    task = Task.objects.get(id=pk)
+    form = TaskViewForm(instance=task)
     if request.method=='POST':
         form = TaskCreationForm(request.POST or None)
         if form.is_valid():
@@ -109,7 +109,7 @@ def view(request, pk):
             messages.info(request, 'unsuccessful :(')
             return redirect('/')
     else:    
-        return render(request, 'view.html',{'view':view, 'form':form})
+        return render(request, 'view.html',{'task':task, 'form':form})
 
    
 
@@ -131,8 +131,8 @@ def edit(request, pk):
 
 
 def delete(request, pk):
-    query=Task.objects.get(id=pk)
-    query.delete()
+    task=Task.objects.get(id=pk)
+    task.delete()
     messages.info(request, 'deleted successfully')
     return redirect('/')
     

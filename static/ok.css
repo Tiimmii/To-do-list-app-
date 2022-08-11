@@ -9,7 +9,7 @@
 body{
     font-family: "cosmic Sans Ms", cursive, sans-serif;
     background-color: #b4b4b4;
-    background-image: url(images/background1.jpg);
+    background-image: url(images/background2.jpg);
     background-size: cover;
     width: 100%;
     background-position: center;
@@ -32,7 +32,20 @@ body{
 .box h1{
     text-transform: capitalize;
     text-decoration: underline;
+    font-size: 3em;
 }
+.btn button{
+    background-color:cornflowerblue;
+    color: whitesmoke;
+    padding: 3px;
+    border-radius: 7px;
+}
+a :hover{
+    background-color:aquamarine;
+    color: black;
+}
+
+    
     
     
     

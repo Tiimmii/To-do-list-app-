@@ -21,7 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('to_do_listapp.urls')),
+    path('', include('to_do_listapp.urls', namespace="task")),
 
 ]
 

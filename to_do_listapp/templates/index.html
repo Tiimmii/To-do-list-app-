@@ -5,19 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'ok.css' %}">
     <title>To Do List App</title>
 </head>
 <body>
     <div class="container">
         <div class="box">
             <h1>Welcome {{user.username}}</h1>
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod quaerat sapiente sunt libero minus 
-                alias, dolores qui excepturi cum nulla, doloribus, accusamus in ab. Fuga veritatis eos accusamus dicta!
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque dolore ullam quasi atque mollitia maxime 
-                dolor deleniti provident debitis asperiores, nemo at quibusdam rerum doloribus, dignissimos distinctio,
-                 vero repellat tenetur?
-            </h3>
+            <h2>
+                Lets work on ure tasks &#128516;:
+            </h2>
+            <br>
+            {% for task in task %}
+                <h3>
+                    {{task.title}}
+                    <div class="btn">
+                        <a href="{% url 'task:view' task.id %}">
+                            <button>view Task</button>
+                        </a>
+                        <a href="{% url 'task:edit' task.id %}">
+                            <button>Edit Task</button>
+                        </a>
+                        <a href="{% url 'task:delete' task.id %}">
+                            <button>Delete Task</button>
+                        </a>
+                    </div>
+                </h3> 
+            {% endfor %}
         </div>
     </div>
 </body>
