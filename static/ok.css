@@ -16,9 +16,10 @@ body{
     min-height: 100vh;
 
 }
+
 .container{
     margin: auto;
-    width: 65%;
+    width: 40%;
     position: center;
 }
 .box{
@@ -35,7 +36,7 @@ body{
     text-decoration: underline;
     font-size: 3em;
 }
-.btn button{
+button{
     background-color:cornflowerblue;
     color: whitesmoke;
     padding: 3px;
@@ -45,7 +46,13 @@ a :hover{
     background-color:aquamarine;
     color: black;
 }
-.btn-two
+.header{
+    margin-left: 20em;
+    display: flex;
+}
+body h2, h3, h1{
+    margin-left: 20px;
+}
 
     
     

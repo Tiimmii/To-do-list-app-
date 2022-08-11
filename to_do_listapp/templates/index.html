@@ -13,12 +13,13 @@
     <div class="container">
         <div class="box">
             <div class="header">
-                <a><button>Logout</button></a>
+            <p> <a href="{% url 'task:login' %}"><button>Logout</button></a>&nbsp;&nbsp;&nbsp;
                 <form method="post" action="{% url 'task:search' %}">
                         {% csrf_token %}
                         <input type="text"  placeholder="Search" name="search"/>
-                        <button>Search</button>
+                        <a><button>Search</button></a>
                 </form>
+            </p>
             </div>
             <h1>Welcome {{user.username}}</h1>
             <h2>
@@ -49,11 +50,12 @@
             <br>
             <br>
             <div class="btn">
-                <a href="{% url 'task:create' %}">
+                <h3><a href="{% url 'task:create' %}">
                     <button>
                         Create Task
                     </button>
                 </a>
+            </h3>
             </div>
         </div>
     </div>
