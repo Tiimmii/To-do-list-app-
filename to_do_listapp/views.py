@@ -26,7 +26,8 @@ def signup(request):
         lastname=request.POST['lastname']
 
     
-        if len(email)>0:
+        if len(email)>1:
+#             i made this 1
             if len(username)>0:
                 if len(password)>0:
                     if password==password2:
