@@ -10,16 +10,18 @@
   <body>
     <div class="container">
       <div class="mt-20">
-        <h1 class="text-3xl text-black-800">Signup to create ure To do list &#128513;</h1>
+      <div class="boxx">
+        <h1 class="text-3xl text-black-800">Signup to get started &#128513;</h1>
         <form method="POST">
           {% csrf_token %}
           <hr>
-          {{ form|crispy }}
+          <p class="text-black-500">{{ form|crispy }}</p>
           <hr>
           <button class="mt-2 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Signup</button>
         </form>
-          <p>Already have an account? <a href="login" class="hover:text-white">Login here</a></p>
-      </div>
+          <p>Already have an account? <a href="login" class="hover:text-blue-500">Login here</a></p>
+        </div>
+        </div>
     </div>
   </body>
 </html>

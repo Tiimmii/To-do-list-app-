@@ -21,8 +21,10 @@ body{
     width: 40%;
     position: center;
 }
-.container label{
-    color: black, solid;
+.boxx{
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 3px gray;
+    border-radius: 15px;
+    text-transform: capitalize;
 }
-
-
