@@ -14,9 +14,9 @@
         <div class="box">
             <div class="header">
             <p> <a href="{% url 'task:login' %}"><button>Logout</button></a>&nbsp;&nbsp;&nbsp;
-                <form method="post" action="{% url 'task:search' %}">
+                <form method="get">
                         {% csrf_token %}
-                        <input type="text"  placeholder="Search" name="search"/>
+                        <input type="text"  placeholder="Search" name="search" value="{{search}}"/>
                         <a><button>Search</button></a>
                 </form>
             </p>
@@ -26,9 +26,6 @@
                 Lets work on ure tasks &#128516;:
             </h2>
             <br>
-            {% for message in messages %}
-            {{messgae}}
-            {% endfor %}
             {% for task in task %}
                 <h3>
                     {{task.title}}

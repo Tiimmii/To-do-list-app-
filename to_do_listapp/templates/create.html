@@ -1,4 +1,4 @@
-<p><a href="/">Go back</a></p>
+<p><a href="task:task-list">Go back</a></p>
 <style>
     h5{
         color: red
@@ -6,10 +6,6 @@
 </style>
 <p>
     <form method="POST" action="">
-        {% for message in messages%}
-        <h5>{{message}}</h5>
-        {% endfor %}
-
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Add Task">

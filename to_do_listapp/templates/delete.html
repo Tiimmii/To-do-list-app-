@@ -1,6 +1,9 @@
 <p>
-   
-        <h3>are u sure u want to delete task? </h3>
-        <a href="{% url 'delete' %}"><button type="submit">delete</button></a>
+        <p><a href="task:task-list">Go back</a></p>
+        <h3>are u sure u want to delete this task? </h3>
+        <form method="post">
+                {{form.as_p}}
+                <button>submit</button>
+        </form>
     
 </p>

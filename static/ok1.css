@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "cosmic Sans Ms", cursive, sans-serif;
+    font-weight: 300;
+}
+body{
+    font-family: "cosmic Sans Ms", cursive, sans-serif;
+    background-color: #b4b4b4;
+    background-image: url(images/background1.jpg);
+    background-size: cover;
+    width: 100%;
+    background-position: center;
+    min-height: 100vh;
+
+}
+
+.container{
+    margin: auto;
+    width: 40%;
+    position: center;
+}
+.container label{
+    color: black, solid;
+}
+
+

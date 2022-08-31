@@ -36,10 +36,13 @@ body{
     text-decoration: underline;
     font-size: 3em;
 }
+.box h2{
+    display: inline;
+}
 button{
     background-color:cornflowerblue;
     color: whitesmoke;
-    padding: 3px;
+    padding: 7px;
     border-radius: 7px;
 }
 a :hover{
@@ -53,6 +56,7 @@ a :hover{
 body h2, h3, h1{
     margin-left: 20px;
 }
+
 
     
     

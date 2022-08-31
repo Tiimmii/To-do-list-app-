@@ -1,0 +1,26 @@
+{% load tailwind_filters %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>login to Timmi's online shop</title>
+  </head>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'ok1.css' %}">
+  <body>
+    <div class="main-block">
+    <div class="container">
+      <div class="mt-20">
+        <h1 class="text-4xl text-black-800">Login to get ure To do list &#128516;</h1>
+        <form method="POST" action="login">
+          {% csrf_token %}
+          <hr class="mt-5">
+          {{ form|crispy }}
+          <hr>
+            <button class="mt-2 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Login</button>
+            <p>Don't have an account? <a href="signup" class="hover:text-white">Signup here</a></p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

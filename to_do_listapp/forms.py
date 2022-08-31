@@ -1,6 +1,6 @@
-from pyexpat import model
 from django import forms
-from . models import Task
+from . models import Task, User
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 
 class TaskCreationForm(forms.ModelForm):
     class Meta:
@@ -26,3 +26,9 @@ class TaskEditForm(forms.ModelForm):
             'description',            
 
         )
+
+class UsersignupForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ("username",)
+        field_classes = {"username": UsernameField}
