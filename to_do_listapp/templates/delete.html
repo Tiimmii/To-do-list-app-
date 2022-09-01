@@ -1,9 +1,21 @@
-<p>
-        <p><a href="task:task-list">Go back</a></p>
-        <h3>are u sure u want to delete this task? </h3>
-        <form method="post">
-                {{form.as_p}}
-                <button>submit</button>
-        </form>
-    
-</p>
+{% extends 'index.html' %}
+{% load tailwind_filters %}
+{% block content %}
+<div class="container">
+        <div class="mt-20">
+                <div class="boxx">
+                        <p><a  class="hover:text-blue-500" href="{% url 'task:task-list' %}">Go back</a></p>
+                        <hr>
+                        <br>
+                        <h3 class="text-2xl">are u sure u want to delete task {{task.title}}? &#128546;</h3>
+                        <form method="post">
+                                {% csrf_token %}
+                                {{form|crispy}}
+                                <button class="mt-2 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
+                                        DeleteTask
+                                    </button>
+                        </form>
+                </div>
+        </div>
+</div>
+{% endblock %}

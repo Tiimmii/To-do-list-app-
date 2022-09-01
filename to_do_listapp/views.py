@@ -1,11 +1,12 @@
-from django.shortcuts import reverse
+from django.shortcuts import reverse, redirect
 from . models import Task
-from . forms import TaskCreationForm, TaskEditForm, TaskViewForm, UserCreationForm
+from . forms import TaskCreationForm, TaskEditForm, UsersignupForm
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 
 class Landingpage(generic.TemplateView):
     template_name = 'landingpage.html'
@@ -19,8 +20,12 @@ class Tasklist(LoginRequiredMixin, generic.ListView):
         context = super(Tasklist, self).get_context_data(**kwargs)
         search_input = self.request.GET.get('search') or ''
         if search_input:
-            context['task'] = Task.objects.filter(title__startswith = search_input)
+            context['task'] = Task.objects.filter(title__icontains = search_input)
             context['search'] = search_input
+        queryset = Task.objects.filter(user = self.request.user)
+        context.update({
+            'incomplete': queryset.filter(status = 'incomplete').count() or queryset.filter(status__isnull=True).count()
+        })
         return context
 
     def get_queryset(self):
@@ -36,18 +41,34 @@ class Tasklist(LoginRequiredMixin, generic.ListView):
 #    else:
 #        return redirect('task:login')
 
-class signup(generic.CreateView):
+class Signup(generic.FormView):
     template_name = 'registration/signup.html'
-    form_class = UserCreationForm
-    
-    def get_success_url(self):
-        return reverse('task:task-list')
+    form_class = UsersignupForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('task:task-list')
 
     def form_valid(self, form):
         user = form.save()
         if user is not None:
             login(self.request, user)
-        return super(signup, self).form_valid(form)
+        return super(Signup, self).form_valid(form)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('task:task-list')
+        return super(Signup, self).get(*args, **kwargs)
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse('task:task-list')
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('task:task-list')
+        return super(CustomLoginView, self).get(*args, **kwargs)
 
 #def signup(request):
 #    if request.method=='POST':
@@ -92,7 +113,7 @@ class signup(generic.CreateView):
 
 class TaskView(LoginRequiredMixin, generic.DetailView):
     template_name = 'view.html'
-    form_class = TaskViewForm
+    form_class = TaskEditForm
     queryset = Task.objects.all()
     context_object_name = 'task'
 
@@ -140,6 +161,12 @@ class Taskcreate(LoginRequiredMixin, generic.CreateView):
     template_name = 'create.html'
     queryset = Task.objects.all()
     form_class = TaskCreationForm
+
+    def form_valid(self, form):
+        task = form.save(commit=False)
+        task.user = self.request.user
+        task.save()
+        return super(Taskcreate, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('task:task-list')

@@ -18,14 +18,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from to_do_listapp import views
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('to_do_listapp.urls', namespace="task")),
-    path('signup', views.signup.as_view(), name='signup'),
-    path('login', LoginView.as_view(), name='login'),
+    path('signup', views.Signup.as_view(), name='signup'),
+    path('login', views.CustomLoginView.as_view(), name='login'),
     path('logout', LogoutView.as_view(), name='logout'),
     path('',views.Landingpage.as_view(), name= 'home')
 

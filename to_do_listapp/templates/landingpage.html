@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'ok.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Welcome</title>
 </head>
 <body>
     <div class="container">
-        <div class="box">
-            <h1>Welcome Guest&#128516;</h1>
-            <div class="welcome" style="margin-top: 40px;">
-                <h2>Login to get started
-                <a  style="text-decoration: none ;" href="{% url 'login' %}"><button>Login</button></a>
+        <div class="mt-20">
+        <div class="boxx">
+            <h1 class="text-4xl text-black-500">Welcome Guest&#128516;</h1>
+            <div class="welcome" style="margin-top: 10px;">
+                <h2 class="text-2xl text-black-200">Login to get started<br>
+                <a  style="text-decoration: none ;" href="{% url 'login' %}"><button class="mt-2 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Login</button></a>
                 </h2> 
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>

@@ -4,41 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'ok.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <title>To Do List App</title>
 </head>
 
 <body>
+    {% block content %}
     <div class="container">
-        <div class="box">
+        <div class="mt-20">
+        <div class="boxx">
             <div class="header">
-            <p> <a href="{% url 'task:login' %}"><button>Logout</button></a>&nbsp;&nbsp;&nbsp;
+            <p> <a href="{% url 'logout' %}"><button class="text-black hover:bg-blue-600 rounded-md">Logout</button></a>&nbsp;&nbsp;  
                 <form method="get">
                         {% csrf_token %}
                         <input type="text"  placeholder="Search" name="search" value="{{search}}"/>
-                        <a><button>Search</button></a>
+                        <a><button class="text-black hover:bg-blue-600 rounded-md">Search</button></a>
                 </form>
             </p>
             </div>
-            <h1>Welcome {{user.username}}</h1>
-            <h2>
+            <h1 class="text-4xl text-black-500" style="text-decoration: underline;">Welcome {{user.username}}</h1>
+            <h2 class="text-2xl">
                 Lets work on ure tasks &#128516;:
             </h2>
+            {% if incomplete %}
+            <br>
+            <hr>
+            <h3>You have {{incomplete}} incomplete tasks</h3>
+            <hr>
+            {% else %}
+            {% endif %}
             <br>
             {% for task in task %}
                 <h3>
-                    {{task.title}}
-                    <div class="btn">
-                        <a href="{% url 'task:view' task.id %}">
-                            <button>view Task</button>
+                    <div class="sl">
+                    <div class="text-2xl">{{task.title}}</div>
+                        <div class="button" style="margin-left: 20px;">
+                        <a href="{% url 'task:task-view' task.id %}">
+                            <button class="text-black hover:bg-blue-600 rounded-md">ViewTask</button>
                         </a>
-                        <a href="{% url 'task:edit' task.id %}">
-                            <button>Edit Task</button>
+                        <a href="{% url 'task:task-edit' task.id %}">
+                            <button class="text-black hover:bg-blue-600 rounded-md">EditTask</button>
                         </a>
-                        <a href="{% url 'task:delete' task.id %}">
-                            <button>Delete Task</button>
+                        <a href="{% url 'task:task-delete' task.id %}">
+                            <button class="text-black hover:bg-blue-600 rounded-md">DeleteTask</button>
                         </a>
+                    </div>
                     </div>
                 </h3>
             {% empty %}
@@ -46,15 +58,15 @@
             {% endfor %}
             <br>
             <br>
-            <div class="btn">
                 <h3><a href="{% url 'task:create' %}">
-                    <button>
+                    <button class="mt-2 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
                         Create Task
                     </button>
                 </a>
             </h3>
-            </div>
         </div>
     </div>
+    </div>
+    {% endblock %}
 </body>
 </html>

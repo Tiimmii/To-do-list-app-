@@ -135,6 +135,7 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'static/images')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'to_do_listapp.User'
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'task:task-list'
 
 CRISPY_TEMPLATE_PACK = 'tailwind'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'

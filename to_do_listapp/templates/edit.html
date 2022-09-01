@@ -1,17 +1,17 @@
-<p><a href="task:task-list">Go back</a></p>
-<style>
-    h5{
-        color: red
-    }
-</style>
-<p>
-    <form method="POST" action="">
-        {% for message in messages%}
-        <h5>{{message}}</h5>
-        {% endfor %}
-
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Save Task">
-    </form>
-</p>
+{% extends 'index.html' %}
+{% load tailwind_filters %}
+{% block content %}
+<div class="container">
+    <div class="mt-20">
+        <div class="boxx">
+            <p><a  class="hover:text-blue-500" href="{% url 'task:task-list' %}">Go back</a></p>
+            <hr class="mb-3">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{form|crispy }}
+                <button class="mt-2 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Save Task</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
