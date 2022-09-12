@@ -18,11 +18,11 @@ class Tasklist(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(Tasklist, self).get_context_data(**kwargs)
+        queryset = Task.objects.filter(user = self.request.user)
         search_input = self.request.GET.get('search') or ''
         if search_input:
-            context['task'] = Task.objects.filter(title__icontains = search_input)
+            context['task'] = queryset.filter(title__icontains = search_input)
             context['search'] = search_input
-        queryset = Task.objects.filter(user = self.request.user)
         context.update({
             'incomplete': queryset.filter(status = 'incomplete').count() or queryset.filter(status__isnull=True).count()
         })
